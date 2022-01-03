@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+    Author : Harsh Ajay Mehta
+    Author URL : https://www.gonewithharshwinds.com
+-->
+<html>
+<head>
+    <title>
+        GoneHarsh
+    </title>
+        <meta charset="UTF-8">
+        <link href="styles/index.css" rel="stylesheet" type=""text/css" media="all">
+    </head>
+<!--
+    COLOR THEME :
+    #A8A7A7 -   DEAD
+    #527ACC -   BODY
+    #175DE8 -   LIVE
+    #474747 -   FG
+    #363636 -   BG
+-->
+<body id="index">
+<!--========================================-->
+<!--========================================-->
+<canvas id="canvas"></canvas>
+
+<script>
+"use strict";
+
+var canvas = document.getElementById('canvas'),
+  gcntxt = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+    
+  hue = 240,
+  stars = [],
+  count = 0,
+  maxStars = 1200;
+var canvas2 = document.createElement('canvas'),
+    gcntxt2 = canvas2.getContext('2d');
+    canvas2.width = 100;
+    canvas2.height = 100;
+var half = canvas2.width/2,
+    grad = gcntxt2.createRadialGradient(half, half, 0, half, half, half);
+    grad.addColorStop(0.025, '#fff');
+    grad.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    grad.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    grad.addColorStop(1, 'transparent');
+
+    gcntxt2.fillStyle = grad;
+    gcntxt2.beginPath();
+    gcntxt2.arc(half, half, half, 0, Math.PI * 2);
+    gcntxt2.fill();
+function random(min, max) {
+  if (arguments.length < 2) {
+    max = min;
+    min = 0;
+  }
+  
+  if (min > max) {
+    var hold = max;
+    max = min;
+    min = hold;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function maxOrbit(x,y) {
+  var max = Math.max(x,y),
+      diameter = Math.round(Math.sqrt(max*max + max*max));
+  return diameter/2;
+}
+
+var Star = function() {
+
+  this.orbitRadius = random(maxOrbit(w,h));
+  this.radius = random(60, this.orbitRadius) / 12;
+  this.orbitX = w / 2;
+  this.orbitY = h / 2;
+  this.timePassed = random(0, maxStars);
+  this.speed = random(this.orbitRadius) / 50000;
+  this.alpha = random(2, 10) / 10;
+
+  count++;
+  stars[count] = this;
+}
+
+Star.prototype.draw = function() {
+  var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+      y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+      twinkle = random(10);
+
+  if (twinkle === 1 && this.alpha > 0) {
+    this.alpha -= 0.05;
+  } else if (twinkle === 2 && this.alpha < 1) {
+    this.alpha += 0.05;
+  }
+
+  gcntxt.globalAlpha = this.alpha;
+    gcntxt.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  this.timePassed += this.speed;
+}
+
+for (var i = 0; i < maxStars; i++) {
+  new Star();
+}
+
+function animation() {
+    gcntxt.globalCompositeOperation = 'source-over';
+    gcntxt.globalAlpha = 0.8;
+    gcntxt.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+    gcntxt.fillRect(0, 0, w, h)
+  
+  gcntxt.globalCompositeOperation = 'lighter';
+  for (var i = 1, l = stars.length; i < l; i++) {
+    stars[i].draw();
+  };  
+  
+  window.requestAnimationFrame(animation);
+}
+
+animation();
+</script>
+<!--========================================-->
+<!--========================================-->
+    <div class="bgtext">
+
+    </div>
+    <div>
+        <p class="title type_effect" id="reload">G O N E W I T H H A R S H W I N D S</p>
+        <p class="next2"> Page Under Construction </p>
+        <p class="next" id="continue">Know More >></p>
+    </div>
+        
+    <script>
+        document.getElementById("reload").style.cursor = "pointer";
+        document.getElementById("reload").onclick = function () { 
+        location.href = "https://www.linktr.ee/gonewithharshwinds"; 
+    }; 
+        document.getElementById("continue").style.cursor = "pointer";
+        document.getElementById("continue").onclick = function () { 
+        location.href = "https://www.linktr.ee/gonewithharshwinds"; 
+    }; 
+    </script>
+<!--========================================-->
+<!--========================================-->
+    <div class="end">
+        <a>Created with &#10084; by <strong>Harsh Mehta</strong></a>
+    </div>
+<!--========================================-->
+<!--========================================-->
+</body>
+</html>

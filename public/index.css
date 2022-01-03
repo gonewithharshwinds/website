@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+/* 
+    CSS for Index Page ~ @gonewithharshwinds
+    Author : Harsh Ajay Mehta
+    Author URL : https://www.gonewithharshwinds.com
+*/
+
+body {  background-color: #000;  }
+
+#canvas {
+  opacity: 0.5;
+}
+
+/*0001 - Index Page */
+
+#index{  position: relative;  width: 1440px;  height: 820px;  }
+
+
+/*title*/
+.title{  
+    position: absolute;
+    text-align: center;
+    top: 48%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    transform: translateX(-50%);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #527ACC;  
+    transition: color 0.7s linear;
+}
+.title:hover {
+  color: #175DE8;
+}
+
+/* type_effect */
+.type_effect {
+  width: 32ch;
+  animation: typing 2.5s steps(120), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0px solid;
+  font-size: larger;
+}
+@keyframes typing {
+  from {
+      width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+      border-color: transparent;
+  }
+}
+
+.next{  
+  position: absolute;
+  text-align: center;
+  top: 59%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
+  transform: translateX(-50%);
+  font-style: normal;
+  font-weight: 100;
+  font-size: 14px;
+  color: #A8A7A7;
+  transition: color 0.5s linear;
+}
+.next:active {
+  color: #474747;
+}
+
+.next2{  
+  position: absolute;
+  text-align: center;
+  top: 52.5%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
+  transform: translateX(-50%);
+  font-style: normal;
+  font-weight: 100;
+  font-size: 12px;
+  color: white;
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker{
+  0%{opacity: .5;}
+  25%{opacity: .75;}
+  50%{opacity: 1;}
+  75%{opacity: .75}
+  100%{opacity: .5}
+  }
+
+.end{  
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    bottom: 1%;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    transform: translateX(-50%);
+    font-style: normal;
+    font-weight: 100;
+    font-size: 14px;
+    color: #A8A7A7;
+    transition: color 0.5s linear;
+  }
+.end:hover {
+    color: white;
+}
